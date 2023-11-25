@@ -17,5 +17,4 @@ public class MainController {
         return "home"; // возвращает Пока все тот же шаблон домашней страницы
     }
 
-
 }
