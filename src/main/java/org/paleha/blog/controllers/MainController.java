@@ -10,6 +10,7 @@ public class MainController {
         model.addAttribute("title", "Главная страница"); // Передаем параметры, которые будут применены к шаблону
         return "home"; // возвращает шаблон домашней страницы
     }
+
     @GetMapping("/about") // под-страница about
     public String about(Model model) {
         model.addAttribute("title", "О нас"); // Передаем параметры, которые будут применены к шаблону
