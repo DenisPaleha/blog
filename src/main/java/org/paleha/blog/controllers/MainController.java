@@ -14,7 +14,7 @@ public class MainController {
     @GetMapping("/about") // под-страница about
     public String about(Model model) {
         model.addAttribute("title", "О нас"); // Передаем параметры, которые будут применены к шаблону
-        return "home"; // возвращает Пока все тот же шаблон домашней страницы
+        return "about"; // возвращает Пока все тот же шаблон домашней страницы
     }
 
 }
