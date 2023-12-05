@@ -11,7 +11,8 @@
 <!--Встраиваем универсальную шапку из файла header-->
 <header th:insert="blocks/header :: header"></header>
 
-<!--Тут тело страницы -->
+<!--Сегмент main с основной частью контента-->
+<main>
 <div class="container" mt-5>  <!--Встроенный класс в Bootstrap + "mt - 5" - отступ 50 пикселей-->
     <head>
         <style>
@@ -21,14 +22,16 @@
 
         p { width: 80%; margin: 0 auto; color: #808080; font-size: 18px; }
 
+
         </style>
-            <h2>Калькулятор PL</h2>  <!--Заголовок второго уровня-->
-            <p title="Например, выражение: 10 2 3 - + вернёт 5">Введите данные в польской нотации</p>
-            <!--блок параграф по всей ширине-->
+        <h2>Калькулятор PL</h2>  <!--Заголовок второго уровня-->
+        <p title="Например, выражение: 10 2 3 + - вернёт 5">Введите данные в польской нотации</p>
+        <!--блок параграф по всей ширине-->
 
         <style>
              form input[type="text"] { width: 550px; height: 40px; font-size: 18px; color: #333; }
              <!--стиль формы-->
+
         </style>
         <form input>
             <input type="text">
@@ -36,12 +39,11 @@
 
     </head>
 </div>
-
-
-<footer style="position: fixed; bottom: 0; width: 100%;"> <!-- закрепление футера внизу -->
-<!--Встраиваем footer из файла footer-->
-    <div th:insert="blocks/footer :: footer"></div>
-</footer>
+</main>
+    <footer style="position: fixed; bottom: 0; width: 100%;"> <!-- закрепление футера внизу -->
+        <!--Встраиваем footer из файла footer-->
+        <div th:insert="blocks/footer :: footer"></div>
+    </footer>
 
 </body>
 </html>
