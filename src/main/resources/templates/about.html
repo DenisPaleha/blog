@@ -13,11 +13,14 @@
 
 <!--Тут тело страницы -->
 <div class="container mt-5">
-    <h1>"Информация о нас!"</h1>  <!--Заголовок первого уровня-->
+    <h1>"About"</h1>  <!--Заголовок первого уровня-->
+    <p>Информация засекречена</p>
 </div>
 
-<!--Встраиваем днище из файла footer-->
-<div th:insert="blocks/footer :: footer"></div>
+<footer style="position: fixed; bottom: 0; width: 100%; text-align: center;"> <!-- закрепление футера внизу -->
+    <!--Встраиваем footer из файла footer-->
+    <div th:insert="blocks/footer :: footer"></div>
+</footer>
 
 </body>
 </html>
