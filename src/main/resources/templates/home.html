@@ -33,9 +33,14 @@
              <!--стиль формы-->
 
         </style>
-        <form input>
-            <input type="text">
+        <form action="/processForm" method="post">
+<!--            куда передаем строку - страница и метод-->
+            <input type="text" name="userInput">
+<!--            <input type="text">-->
         </form>
+
+        <!-- Добавляем вывод обработанных данных -->
+        <p th:text="${processedInput}"></p>
 
     </head>
 </div>
