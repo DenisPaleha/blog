@@ -6,6 +6,11 @@ import org.paleha.blog.numbers.OctalNumbers;
 import org.paleha.blog.numbers.RomeNumerals;
 import org.springframework.stereotype.Component;
 
+import static org.paleha.blog.numbers.BinaryNumbers.convertDecimalToBinary;
+import static org.paleha.blog.numbers.HexNumbers.convertDecimalToHex;
+import static org.paleha.blog.numbers.OctalNumbers.convertDecimalToOctal;
+import static org.paleha.blog.numbers.RomeNumerals.convertDecimalToRome;
+
 @Component
 public class DecoderToDecimal {
 
@@ -19,7 +24,7 @@ public class DecoderToDecimal {
 //        boolean keyHashMap = coreHashMap.hasKey(operand); // Check if str is a constants.HashMap key
 
         if (isDecimal) {    // Put the string in a BigDecimal and add it to the stack
-            return operand + "Это десятичное число";
+            return operand + " Это десятичное число";
         } else if (isRome) {
             return String.valueOf(RomeNumerals.convertRomeToPush(operand));
         } else if (isOctal) {  // Пробрасываем все исключения наверх!!!
@@ -41,5 +46,21 @@ public class DecoderToDecimal {
             } catch (NumberFormatException e) {
                 return false;
             }
+        }
+
+        public String toRome(double operand) throws Exception {
+        return convertDecimalToRome(operand);
+        }
+
+        public String toBinary(double operand) {
+           return convertDecimalToBinary((int)operand);
+        }
+
+        public String toOct(double operand) {
+        return convertDecimalToOctal((int)operand);
+        }
+
+        public String toHex(double operand) {
+        return convertDecimalToHex((int)operand);
         }
 }

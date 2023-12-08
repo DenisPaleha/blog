@@ -24,7 +24,7 @@
 
 
         </style>
-            <h3>Конвертер систем счисления</h3>  <!--Заголовок второго уровня-->
+            <h3>Конвертер чисел</h3>  <!--Заголовок второго уровня-->
             <p title="Нужно указать префиксы '0b' для двоичной, '0o' восьмеричной, '0x' шестнадцатеричной">Конвертация в десятичную систему счисления</p>
             <!--блок параграф по всей ширине-->
 
@@ -33,14 +33,52 @@
              <!--стиль формы-->
 
         </style>
-            <form action="/processForm" method="post">
+            <form action="/toDecimal" method="post">
                 <!--            куда передаем строку - страница и метод-->
                 <input type="text" name="userInput">
                 <!--            <input type="text">-->
             </form>
-
             <!-- Добавляем вывод обработанных данных -->
             <p th:text="${convertToDecimal}"></p>
+
+<!--            Форма два!-->
+<!--            Строка с отступом от предыдущего блока-->
+            <div style="height: 30px;"></div>
+
+            <p title="Выберете систему, в которую хотите конвертировать">Конвертация из десятичной системы</p>
+
+<!--            Радиокнопки-->
+            <form action="/fromDecimal" method="post">
+
+                <!-- Радиокнопки -->
+                <label>
+                    <input type="radio" name="question" value="Rome">
+                    Rome
+                </label>
+                <label>
+                    <input type="radio" name="question" value="Binary">
+                    Binary
+                </label>
+                <label>
+                    <input type="radio" name="question" value="Oct">
+                    Oct
+                </label>
+                <label>
+                    <input type="radio" name="question" value="Hex">
+                    Hex
+                </label>
+
+                <br>
+
+                <!-- Поле для ввода числа -->
+                <input type="text" name="userInputDecimal">
+
+                <br>
+                <!-- Кнопка отправки формы - не нужна -->
+<!--                <input type="submit" value="Convert">-->
+            </form>
+
+            <p th:text="${convertFromDecimal}"></p>
 
         </head>
     </div>
