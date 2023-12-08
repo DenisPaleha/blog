@@ -3,10 +3,6 @@ package org.paleha.blog.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import static org.paleha.blog.core.Decoder.decoder;
-import static org.paleha.blog.numbers.BinaryNumbers.binaryToPush;
 
 @Controller
 public class MainController {
@@ -24,18 +20,18 @@ public class MainController {
         return "home"; // возвращает шаблон домашней страницы
     }
 
-    @PostMapping("/processForm")
-    public String processForm(String userInput, Model model) throws Exception {
-        // userInput содержит данные, введенные пользователем.
-        // Выполняем обработку данных, например, преобразуем строку.
-        String processedInput = decoder(userInput);
-
-
-        // Добавляем обработанные данные в модель для возврата на страницу
-        model.addAttribute("processedInput", processedInput);
-
-        return "home"; // возвращает шаблон домашней страницы (где находится ваша форма)
-    }
+//    @PostMapping("/processForm")
+//    public String processForm(String userInput, Model model) throws Exception {
+//        // userInput содержит данные, введенные пользователем.
+//        // Выполняем обработку данных, например, преобразуем строку.
+//        String processedInput = decoder(userInput);
+//
+//
+//        // Добавляем обработанные данные в модель для возврата на страницу
+//        model.addAttribute("processedInput", processedInput);
+//
+//        return "home"; // возвращает шаблон домашней страницы (где находится ваша форма)
+//    }
 
     //    @PostMapping
 //    public String processForm(String userInput) {

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Конвертер</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!--    Линк на сайт со стилями CSS находится здесь https://www.bootstrapcdn.com/-->
+</head>
+
+<body>
+<!--Встраиваем универсальную шапку из файла header-->
+<header th:insert="blocks/header :: header"></header>
+
+<!--Сегмент main с основной частью контента-->
+<main>
+    <div class="container" mt-5>  <!--Встроенный класс в Bootstrap + "mt - 5" - отступ 50 пикселей-->
+        <head>
+            <style>
+        body {  /* Центрирование содержимого по горизонтали */
+            text-align: center;
+        }
+
+        p { width: 80%; margin: 0 auto; color: #808080; font-size: 18px; }
+
+
+        </style>
+            <h3>Конвертер систем счисления</h3>  <!--Заголовок второго уровня-->
+            <p title="Нужно указать префиксы '0b' для двоичной, '0o' восьмеричной, '0x' шестнадцатеричной">Конвертация в десятичную систему счисления</p>
+            <!--блок параграф по всей ширине-->
+
+            <style>
+             form input[type="text"] { width: 550px; height: 40px; font-size: 18px; color: #333; }
+             <!--стиль формы-->
+
+        </style>
+            <form action="/processForm" method="post">
+                <!--            куда передаем строку - страница и метод-->
+                <input type="text" name="userInput">
+                <!--            <input type="text">-->
+            </form>
+
+            <!-- Добавляем вывод обработанных данных -->
+            <p th:text="${convertToDecimal}"></p>
+
+        </head>
+    </div>
+</main>
+<footer style="position: fixed; bottom: 0; width: 100%;"> <!-- закрепление футера внизу -->
+    <!--Встраиваем footer из файла footer-->
+    <div th:insert="blocks/footer :: footer"></div>
+</footer>
+
+</body>
+</html>

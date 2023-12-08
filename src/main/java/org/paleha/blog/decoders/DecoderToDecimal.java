@@ -1,11 +1,12 @@
-package org.paleha.blog.core;
+package org.paleha.blog.decoders;
 
 import org.paleha.blog.numbers.BinaryNumbers;
 import org.paleha.blog.numbers.HexNumbers;
 import org.paleha.blog.numbers.OctalNumbers;
 import org.paleha.blog.numbers.RomeNumerals;
 
-public class Decoder {
+public class DecoderToDecimal {
+
 
     public static String decoder(String operand) throws Exception {
         boolean isDecimal = isDouble(operand);
