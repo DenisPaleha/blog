@@ -4,11 +4,13 @@ import org.paleha.blog.numbers.BinaryNumbers;
 import org.paleha.blog.numbers.HexNumbers;
 import org.paleha.blog.numbers.OctalNumbers;
 import org.paleha.blog.numbers.RomeNumerals;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DecoderToDecimal {
 
 
-    public static String decoder(String operand) throws Exception {
+    public  String decoder(String operand) throws Exception {
         boolean isDecimal = isDouble(operand);
         boolean isRome = RomeNumerals.isRome(operand); // Check the content of the Roman numeral string
         boolean isOctal = OctalNumbers.isOctalNumber(operand); // Check the content of the octal number string
@@ -32,7 +34,7 @@ public class DecoderToDecimal {
 
     }
 
-        public static boolean isDouble(String str) {
+        public boolean isDouble(String str) {
             try {
                 Double.parseDouble(str);
                 return true;
