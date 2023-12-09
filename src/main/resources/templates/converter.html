@@ -19,13 +19,11 @@
         body {  /* Центрирование содержимого по горизонтали */
             text-align: center;
         }
-
         p { width: 80%; margin: 0 auto; color: #808080; font-size: 18px; }
-
 
         </style>
             <h3>Конвертер чисел</h3>  <!--Заголовок второго уровня-->
-            <p title="Нужно указать префиксы '0b' для двоичной, '0o' восьмеричной, '0x' шестнадцатеричной">Конвертация в десятичную систему счисления</p>
+            <p title="Нужно указать префиксы '0b' для двоичной, '0o' восьмеричной, '0x' шестнадцатеричной">Конвертация в десятичную систему</p>
             <!--блок параграф по всей ширине-->
 
             <style>
@@ -35,7 +33,7 @@
         </style>
             <form action="/toDecimal" method="post">
                 <!--            куда передаем строку - страница и метод-->
-                <input type="text" name="userInput">
+                <input type="text" name="userInput" placeholder="Введите число, например XXVIII">
                 <!--            <input type="text">-->
             </form>
             <!-- Добавляем вывод обработанных данных -->
@@ -50,20 +48,20 @@
 <!--            Радиокнопки-->
             <form action="/fromDecimal" method="post">
 
-                <!-- Радиокнопки -->
-                <label>
-                    <input type="radio" name="question" value="Rome">
+                <!-- Радиокнопки (атрибут "checked" устанавливает кнопку по умолчанию-->
+                <label style="margin-right: 25px;">
+                    <input type="radio" name="question" value="Rome" checked>
                     Rome
                 </label>
-                <label>
+                <label style="margin-right: 25px;">
                     <input type="radio" name="question" value="Binary">
                     Binary
                 </label>
-                <label>
+                <label style="margin-right: 25px;">
                     <input type="radio" name="question" value="Oct">
                     Oct
                 </label>
-                <label>
+                <label style="margin-right: 25px;">
                     <input type="radio" name="question" value="Hex">
                     Hex
                 </label>
@@ -71,7 +69,7 @@
                 <br>
 
                 <!-- Поле для ввода числа -->
-                <input type="text" name="userInputDecimal">
+                <input type="text" name="userInputDecimal" placeholder="Введите число, например 1823">
 
                 <br>
                 <!-- Кнопка отправки формы - не нужна -->
