@@ -33,23 +33,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-<!--			<version>3.2.0</version>-->
-<!--		</dependency>-->
-
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<!--		<dependency>-->
-<!--			<groupId>mysql</groupId>-->
-<!--			<artifactId>mysql-connector-java</artifactId>-->
-<!--			<version>8.0.33</version>-->
-<!--			<scope>runtime</scope>-->
-<!--		</dependency>-->
-
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -61,6 +44,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+<!-- Зависимости логгера-->
+<!--		<dependency>-->
+<!--			<groupId>org.slf4j</groupId>-->
+<!--			<artifactId>slf4j-api</artifactId>-->
+<!--			<version>2.0.5</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>ch.qos.logback</groupId>-->
+<!--			<artifactId>logback-classic</artifactId>-->
+<!--			<version>1.4.7</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 
