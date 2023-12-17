@@ -50,26 +50,26 @@
 
                 <!-- Радиокнопки (атрибут "checked" устанавливает кнопку по умолчанию-->
                 <label style="margin-right: 25px;">
-                    <input type="radio" name="question" value="Rome" checked>
+                    <input type="radio" name="question" value="Rome" th:checked="${lastSelectedRadio == 'Rome'}">
                     Rome
                 </label>
                 <label style="margin-right: 25px;">
-                    <input type="radio" name="question" value="Binary">
+                    <input type="radio" name="question" value="Binary" th:checked="${lastSelectedRadio == 'Binary'}">
                     Binary
                 </label>
                 <label style="margin-right: 25px;">
-                    <input type="radio" name="question" value="Oct">
+                    <input type="radio" name="question" value="Oct" th:checked="${lastSelectedRadio == 'Oct'}">
                     Oct
                 </label>
                 <label style="margin-right: 25px;">
-                    <input type="radio" name="question" value="Hex">
+                    <input type="radio" name="question" value="Hex" th:checked="${lastSelectedRadio == 'Hex'}">
                     Hex
                 </label>
 
                 <br>
 
                 <!-- Поле для ввода числа -->
-                <input type="text" name="userInputDecimal" placeholder="Введите число, например 1823">
+                <input type="text" name="userInputDecimal" placeholder="Введите число, например 1823" th:value="${lastUserInput}">
 
                 <br>
                 <!-- Кнопка отправки формы - не нужна -->

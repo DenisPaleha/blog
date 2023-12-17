@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ConverterController {
 
     private final DecoderToDecimal decoderToDecimal;
+    private String lastSelectedRadio = "Rome"; // Переменная для хранения последнего выбранного значения радиокнопки
+    private String lastUserInput = ""; // Переменная для хранения последнего введенного значения
+
 
     @Autowired // Аннотация добавляет зависимость Spring и позволяет
     // создать экземпляр класса (с аннотацией @Component или @Service)
@@ -24,6 +27,8 @@ public class ConverterController {
     @GetMapping("/converter") // Аннотация определяет какую именно страницу отслеживает контроллер
     public String converter(Model model) { // Функция возвращает строку с названием шаблона, который мы должны подключить
         model.addAttribute("title", "Конвертация в десятичные");
+        model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
+        model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
         return "converter";
     }
 
@@ -47,6 +52,10 @@ public class ConverterController {
     public String fromDecimal(@RequestParam("userInputDecimal") String userInputDecimal, @RequestParam("question") String userChoice, Model model) throws Exception {
         double input = Integer.parseInt(userInputDecimal); // Парсим строку
         String result = "";
+
+        lastSelectedRadio = userChoice;
+        lastUserInput = userInputDecimal;
+
         try {
         // В зависимости от выбора пользователя выполняем нужное действие
         if (userChoice.equals("Rome")) { // Декодируем в Rome
@@ -60,8 +69,13 @@ public class ConverterController {
         }
 
             model.addAttribute("convertFromDecimal", result);
+            model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
+            model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
         } catch (OutOfRangeException e){
             model.addAttribute("convertFromDecimal", e.getMessage());
+            model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
+            model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
+
         }
         // Добавляем обработанные данные в модель для возврата на страницу
 //        model.addAttribute("convertFromDecimal", result);
