@@ -33,7 +33,7 @@
         </style>
             <form action="/toDecimal" method="post">
                 <!--            куда передаем строку - страница и метод-->
-                <input type="text" name="userInput" placeholder="Введите число, например XXVIII">
+                <input type="text" name="userInput" placeholder="Введите число, например XXVIII" th:value="${UserInputToDecimal}">
                 <!--            <input type="text">-->
             </form>
             <!-- Добавляем вывод обработанных данных -->
@@ -50,7 +50,7 @@
 
                 <!-- Радиокнопки (атрибут "checked" устанавливает кнопку по умолчанию-->
                 <label style="margin-right: 25px;">
-                    <input type="radio" name="question" value="Rome" th:checked="${lastSelectedRadio == 'Rome'}">
+                    <input type="radio" name="question" value="Rome" checked>
                     Rome
                 </label>
                 <label style="margin-right: 25px;">
@@ -69,7 +69,7 @@
                 <br>
 
                 <!-- Поле для ввода числа -->
-                <input type="text" name="userInputDecimal" placeholder="Введите число, например 1823" th:value="${lastUserInput}">
+                <input type="text" name="userInputDecimal" placeholder="Введите целое число, например 1823" th:value="${lastUserInput}">
 
                 <br>
                 <!-- Кнопка отправки формы - не нужна -->

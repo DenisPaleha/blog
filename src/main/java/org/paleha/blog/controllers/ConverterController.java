@@ -15,7 +15,8 @@ public class ConverterController {
 
     private final DecoderToDecimal decoderToDecimal;
     private String lastSelectedRadio = "Rome"; // Переменная для хранения последнего выбранного значения радиокнопки
-    private String lastUserInput = ""; // Переменная для хранения последнего введенного значения
+    private String lastUserInput = ""; // Переменная для хранения последнего введенного значения второг поля
+    private String UserInputToDecimal = ""; // Последнее введенное значение первого поля.
 
 
     @Autowired // Аннотация добавляет зависимость Spring и позволяет
@@ -27,56 +28,70 @@ public class ConverterController {
     @GetMapping("/converter") // Аннотация определяет какую именно страницу отслеживает контроллер
     public String converter(Model model) { // Функция возвращает строку с названием шаблона, который мы должны подключить
         model.addAttribute("title", "Конвертация в десятичные");
+        model.addAttribute("UserInputToDecimal", UserInputToDecimal); // Передаем последнее введенное значение первого поля
         model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
         model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
         return "converter";
     }
 
-    /** Обработка первой формы - конвертация в десятичное число*/
+    /**
+     * Обработка первой формы - конвертация в десятичное число
+     */
     @PostMapping("/toDecimal")
     public String toDecimal(String userInput, Model model) throws Exception {
         // userInput содержит данные, введенные пользователем.
         // Выполняем обработку данных, например, преобразуем строку.
+        UserInputToDecimal = userInput;
         try {
             String decimal = decoderToDecimal.decoder(userInput);
             model.addAttribute("convertToDecimal", decimal);
-        }  catch (ConversionException e) {
+        } catch (ConversionException e) {
             model.addAttribute("convertToDecimal", e.getMessage());
         }
         // Добавляем обработанные данные в модель для возврата на страницу
 //        model.addAttribute("convertToDecimal", decimal);
+        model.addAttribute("UserInputToDecimal", UserInputToDecimal);
         return "converter"; // возвращает шаблон домашней страницы (где находится ваша форма)
     }
-    /** Обработка второй формы - конвертация из десятичного числа*/
+
+    /**
+     * Обработка второй формы - конвертация из десятичного числа
+     */
     @PostMapping("/fromDecimal")
     public String fromDecimal(@RequestParam("userInputDecimal") String userInputDecimal, @RequestParam("question") String userChoice, Model model) throws Exception {
-        double input = Integer.parseInt(userInputDecimal); // Парсим строку
         String result = "";
-
         lastSelectedRadio = userChoice;
         lastUserInput = userInputDecimal;
-
         try {
-        // В зависимости от выбора пользователя выполняем нужное действие
-        if (userChoice.equals("Rome")) { // Декодируем в Rome
-            result = decoderToDecimal.toRome(input);
-        } else if (userChoice.equals("Binary")) { // Декодируем в Binary
-            result = decoderToDecimal.toBinary(input);
-        } else if (userChoice.equals("Oct")) { // Декодируем в Oct
-            result = decoderToDecimal.toOct(input);
-        } else if (userChoice.equals("Hex")) { // Декодируем в Hex
-            result = decoderToDecimal.toHex(input);
-        }
+            double input = Integer.parseInt(userInputDecimal); // Парсим строку в integer
+            // userInputDecimal -- это строка.
+            // а если пользователь ввел не целое число - ошибка. Значит надо сделать проверку!
 
+
+            // В зависимости от выбора пользователя выполняем нужное действие
+            if (userChoice.equals("Rome")) { // Декодируем в Rome
+                try {
+                    result = decoderToDecimal.toRome(input);
+                } catch (OutOfRangeException e) {
+                    result = e.getMessage();
+                    model.addAttribute("convertFromDecimal", result);
+                }
+            } else if (userChoice.equals("Binary")) { // Декодируем в Binary
+                result = decoderToDecimal.toBinary(input);
+            } else if (userChoice.equals("Oct")) { // Декодируем в Oct
+                result = decoderToDecimal.toOct(input);
+            } else if (userChoice.equals("Hex")) { // Декодируем в Hex
+                result = decoderToDecimal.toHex(input);
+            }
+
+
+        } catch (Exception e) {
+            result = "Введите целое число";
             model.addAttribute("convertFromDecimal", result);
-            model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
-            model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
-        } catch (OutOfRangeException e){
-            model.addAttribute("convertFromDecimal", e.getMessage());
-            model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
-            model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
-
         }
+        model.addAttribute("convertFromDecimal", result);
+        model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
+        model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
         // Добавляем обработанные данные в модель для возврата на страницу
 //        model.addAttribute("convertFromDecimal", result);
         return "converter"; // возвращает шаблон домашней страницы (где находится ваша форма)
