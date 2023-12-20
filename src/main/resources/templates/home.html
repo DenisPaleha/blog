@@ -19,10 +19,7 @@
         body {  /* Центрирование содержимого по горизонтали */
             text-align: center;
         }
-
         p { width: 80%; margin: 0 auto; color: #808080; font-size: 18px; }
-
-
         </style>
         <h2>Калькулятор PL</h2>  <!--Заголовок второго уровня-->
         <p title="Например, выражение: 10 2 3 + - вернёт 5">Введите данные в польской нотации</p>
@@ -31,16 +28,16 @@
         <style>
              form input[type="text"] { width: 550px; height: 40px; font-size: 18px; color: #333; }
              <!--стиль формы-->
-
         </style>
-        <form action="/processForm" method="post">
+
+        <form action="/calculatorForm" method="post">
 <!--            куда передаем строку - страница и метод-->
             <input type="text" name="userInput">
 <!--            <input type="text">-->
         </form>
 
         <!-- Добавляем вывод обработанных данных -->
-        <p th:text="${processedInput}"></p>
+        <p th:text="${calculatorOutput}"></p>
 
     </head>
 </div>

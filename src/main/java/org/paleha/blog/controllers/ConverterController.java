@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ConverterController {
 
     private final DecoderToDecimal decoderToDecimal;
-    private String lastSelectedRadio = "Rome"; // Переменная для хранения последнего выбранного значения радиокнопки
-    private String lastUserInput = ""; // Переменная для хранения последнего введенного значения второг поля
     private String UserInputToDecimal = ""; // Последнее введенное значение первого поля.
+    private String lastSelectedRadio = "Rome"; // Переменная для хранения последнего выбранного значения радиокнопки
+    private String lastUserInput = ""; // Переменная для хранения последнего введенного значения второго поля
 
 
     @Autowired // Аннотация добавляет зависимость Spring и позволяет
@@ -30,7 +30,7 @@ public class ConverterController {
         model.addAttribute("title", "Конвертация в десятичные");
         model.addAttribute("UserInputToDecimal", UserInputToDecimal); // Передаем последнее введенное значение первого поля
         model.addAttribute("lastSelectedRadio", lastSelectedRadio); // Передаем последнее выбранное значение радиокнопки
-        model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение
+        model.addAttribute("lastUserInput", lastUserInput); // Передаем последнее введенное значение второго поля
         return "converter";
     }
 
