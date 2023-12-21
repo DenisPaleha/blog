@@ -24,8 +24,8 @@ public class Main {
 
     String memoryFileName = "Memory.txt"; // Name of the memory file
     String output; // Declare output string
-    boolean theEnd = false;
     State state = new State();
+    Core core = new Core(state);
     AbstractLogger logger = new LoggerPl();
     HashMap hashmapMain = new HashMap(8);
     String memory = loadFromMemoryFile(state, memoryFileName);
@@ -39,14 +39,10 @@ public class Main {
     public String calculator(String userInput) {
         try {
 
-            while (!theEnd) { // Main program loop with user input
-
                 logger.logOutput(userInput, "in"); // Copy all input data to the logger
 
                 State copy = state.copyState();  // Copy the State class instance to insert in case of expression reading error
 
-                Core core = new Core(state);
-                // декларируется новый сканер который сканирует уже эту строку +++
                 Scanner lineScanner = new Scanner(userInput).useLocale(Locale.ENGLISH); // Scan the incomingData variable
 
                 // Insert possible values supported by the calculator
@@ -59,7 +55,6 @@ public class Main {
                         try {
                             coreNotUsed = core.calculator(operand);
                         } catch (ConversionException wrongNumber) {
-//                        coreNotUsed = false;
                             logger.logOutput(wrongNumber.getMessage(), "out");
                             return wrongNumber.getMessage();
                         }
@@ -103,7 +98,6 @@ public class Main {
                                     return output;
 
                                 } else if (operand.equals(TO_ROME)) { // "ToRome" function, converts memory to Roman numeral
-//                                System.out.println(HEAD_MESSAGE_ROME_1);
                                     double mem = state.memoryResult.doubleValue(); // Convert BigDecimal to double
                                     String result = RomeNumerals.convertDecimalToRome(mem);
                                     output = String.format(state.getPhrase("roman_number_equal"), result);
@@ -165,17 +159,15 @@ public class Main {
                                     state.setLanguage(false);
                                     output = "Язык: Русский";
                                     logger.logOutput(output, "out");
-//                                    return output;
+                                    return output;
 
                                 } else if (operand.equals(OUT_ENG)) { // Language switch
                                     state.setLanguage(true);
                                     output = "Language: English";
                                     logger.logOutput(output, "out");
-//                                    return output;
-
-                                } else if (operand.equals(EXIT)) { // Exit function "E"
-                                    theEnd = true;
+                                    return output;
                                 }
+
                             } catch (OutOfRangeException e) { // operand.equals(TO_ROME)
                                 output = e.getMessage();
                                 logger.logOutput(output, "out");
@@ -192,15 +184,6 @@ public class Main {
                                 return output;
                             }
                         }
-                    }
-
-                    if (theEnd) { // If theEnd boolean value is true, exit the program.
-                        saveStateToMemoryFile(state, memoryFileName);
-                        output = state.getPhrase("exiting");
-                        logger.logOutput(output, "out");
-                        lineScanner.close();
-//                        scanner.close();
-                        return output;
                     }
 
                     state.memoryResult = state.peek();
@@ -225,7 +208,7 @@ public class Main {
                     logger.logOutput(output, "out");
                     return output;
                 }
-            }
+
         } catch (LoggerException e) {
             return "failed to connect the logger";
 
@@ -237,7 +220,7 @@ public class Main {
             // Тут по идее должны вываливаться сообщения вообще обо всех ошибках.
             return e.getMessage();
         }
-    return " Конец работы программы";
+//    return " Конец работы программы";
     }
 
     /**
