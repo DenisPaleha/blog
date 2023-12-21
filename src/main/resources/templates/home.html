@@ -13,39 +13,46 @@
 
 <!--Сегмент main с основной частью контента-->
 <main>
-<div class="container" mt-5>  <!--Встроенный класс в Bootstrap + "mt - 5" - отступ 50 пикселей-->
-    <head>
-        <style>
+    <div class="container" mt-5>  <!--Встроенный класс в Bootstrap + "mt - 5" - отступ 50 пикселей-->
+        <head>
+            <style>
         body {  /* Центрирование содержимого по горизонтали */
             text-align: center;
         }
         p { width: 80%; margin: 0 auto; color: #808080; font-size: 18px; }
-        </style>
-        <h2>Калькулятор PL</h2>  <!--Заголовок второго уровня-->
-        <p title="Например, выражение: 10 2 3 + - вернёт 5">Введите данные в польской нотации</p>
-        <!--блок параграф по всей ширине-->
 
-        <style>
+            </style>
+            <h2>Калькулятор PL</h2>  <!--Заголовок второго уровня-->
+            <p title="Например, выражение: 10 2 3 + - вернёт 5">Введите данные в польской нотации</p>
+            <!--блок параграф по всей ширине-->
+
+            <style>
              form input[type="text"] { width: 550px; height: 40px; font-size: 18px; color: #333; }
              <!--стиль формы-->
-        </style>
 
-        <form action="/calculatorForm" method="post">
-<!--            куда передаем строку - страница и метод-->
-            <input type="text" name="userInput">
-<!--            <input type="text">-->
-        </form>
+            </style>
 
-        <!-- Добавляем вывод обработанных данных -->
-        <p th:text="${calculatorOutput}"></p>
+            <form id="myForm" action="/calculatorForm" method="post">
+                <input type="text" id="userInput" name="userInput">
+            </form>
 
-    </head>
-</div>
+            <p th:text="${calculatorOutput}"></p>
+
+            <script>
+             const userInputField = document.getElementById('userInput');
+             window.onload = function() {
+             userInputField.focus();
+             };
+            </script>
+
+
+        </head>
+    </div>
 </main>
-    <footer style="position: fixed; bottom: 0; width: 100%;"> <!-- закрепление футера внизу -->
-        <!--Встраиваем footer из файла footer-->
-        <div th:insert="blocks/footer :: footer"></div>
-    </footer>
+<footer style="position: fixed; bottom: 0; width: 100%;"> <!-- закрепление футера внизу -->
+    <!--Встраиваем footer из файла footer-->
+    <div th:insert="blocks/footer :: footer"></div>
+</footer>
 
 </body>
 </html>
