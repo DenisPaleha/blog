@@ -1,11 +1,14 @@
 package org.paleha.blog.controllers;
 
+import org.paleha.blog.exceptions.LoggerException;
 import org.paleha.blog.main.Main;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.io.IOException;
 
 @Controller
 public class MainController {
@@ -27,12 +30,17 @@ public class MainController {
     }
 
     @PostMapping("/calculatorForm")
-    public String calculatorForm(String userInput, Model model) throws Exception {
+    public String calculatorForm(String userInput, Model model) {
         // userInput содержит данные, введенные пользователем.
         // Выполняем обработку данных, например, преобразуем строку.
+        try {
         String calculatorOutput = main.calculator(userInput);
         // Добавляем обработанные данные в модель для возврата на страницу
         model.addAttribute("calculatorOutput", calculatorOutput);
+        } catch (LoggerException | IOException e) {
+            model.addAttribute("calculatorOutput", e.getMessage());
+        }
+
         return "home"; // возвращает шаблон домашней страницы (где находится ваша форма)
     }
 
