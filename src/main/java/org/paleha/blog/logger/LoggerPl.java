@@ -24,7 +24,7 @@ public final class LoggerPl extends AbstractLogger {
         String fileTxtName = "log_" + generateFileName() + ".txt"; // generate a filename
         createNewDir(this.loggerPath); // Create a logger folder if there is no folder
         this.outputFile = new File(this.loggerPath, fileTxtName); // File object combining the file path and file name
-        writeFileToDir(this.outputFile, "New document:\n"); // Write file to dir
+        writeFileToDir(this.outputFile, "New session:\n"); // Write file to dir
     }
 
     /**
@@ -85,8 +85,9 @@ public final class LoggerPl extends AbstractLogger {
      * Function to write a string to the file.
      */
     public void logOutput(String result, String prefix) throws LoggerException {
-        DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("dd_HH-mm-ss");
-        String logOutput = dateTime + " [LogPl] " + prefix + ": " + result + "\n";
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String logOutput = now.format(dateTime) + " [LogPl] " + prefix + ": " + result + "\n";
         isFileExist();
         writeFileToDir(this.outputFile, logOutput); // Append the string to the document.
     }
